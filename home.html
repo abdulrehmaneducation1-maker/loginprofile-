@@ -584,12 +584,38 @@
         </div>
         <p>&copy; 2026 Abdul Rehman. Freelance UX/UI, WordPress, Etsy & eBay & Amazon & Shopify Specialist. All Rights Reserved.</p>
     </footer>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+
+<!-- Firebase Config -->
+<script src="Firebase config.js"></script>
+
+<!-- Logout -->
 <script>
-document.getElementById("logoutBtn").onclick = function () {
-    firebase.auth().signOut().then(function () {
-        window.location.href = "index.html";
+const logoutBtn = document.getElementById("logoutBtn");
+
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", function () {
+
+        firebase.auth().signOut()
+            .then(function () {
+                window.location.replace("index.html");
+            })
+            .catch(function (error) {
+                console.error("Logout failed:", error);
+                alert("Logout failed. Please try again.");
+            });
+
     });
-};
+}
+</script>
+
+<!-- Main JS -->
+<script src="script.js"></script>
+
+</body>
+</html>
 </script>
     <script src="script.js"></script>
 </body>
