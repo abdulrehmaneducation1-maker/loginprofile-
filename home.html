@@ -584,34 +584,7 @@
         </div>
         <p>&copy; 2026 Abdul Rehman. Freelance UX/UI, WordPress, Etsy & eBay & Amazon & Shopify Specialist. All Rights Reserved.</p>
     </footer>
-<script src="Firebase config.js"></script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    const siteLogoutBtn = document.getElementById("siteLogoutBtn");
-
-    if (!siteLogoutBtn) {
-        console.error("Logout button not found");
-        return;
-    }
-
-    siteLogoutBtn.addEventListener("click", function () {
-
-        console.log("Logout clicked");
-
-        firebase.auth().signOut()
-            .then(function () {
-                window.location.replace("index.html");
-            })
-            .catch(function (error) {
-                console.error("Logout failed:", error);
-                alert("Logout failed. Please try again.");
-            });
-
-    });
-
-});
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
