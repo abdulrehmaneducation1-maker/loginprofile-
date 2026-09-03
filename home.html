@@ -65,7 +65,7 @@
     <title>Freelance UX/UI Designer, Graphic Designer & WordPress Developer | Abdul Rehman</title>
     
     <!-- Standard Favicon -->
-    <link rel="icon" type="image/png" href="web.jfif">
+    <link rel="icon" type="image/png" href="hello.png">
     
     <!-- Apple Touch Icon (shows up when saved to iOS home screens) -->
     <link rel="apple-touch-icon" href="me.png">
@@ -74,28 +74,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
-
-<!-- Firebase Config -->
-<script src="Firebase config.js"></script>
-
-<!-- Logout JS -->
-<script>
-document.getElementById("logoutBtn").onclick = function () {
-    firebase.auth().signOut().then(function () {
-        window.location.href = "index.html";
-    });
-};
-</script>
-
-<!-- Your main JavaScript -->
-
-
-
-    
 </head>
 <body>
 
@@ -114,17 +92,17 @@ document.getElementById("logoutBtn").onclick = function () {
                   <li><a href="#feedback"><i class="fa-solid fa-comments"></i> Feedback</a></li>
                 <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
 
-   <li>
+         <li>      
     <button
-        id="logoutBtn"
-        type="button"
-        class="logout-btn">
-        
-        <i class="fa-solid fa-right-from-bracket"></i>
-        <span>Logout</span>
+    id="logoutBtn"
+    type="button"
+    class="logout-btn">
 
-    </button>
-</li>
+    <i class="fa-solid fa-right-from-bracket"></i>
+    Logout
+
+</button>
+                </li>
             </ul>
         </nav>
     </header>
@@ -606,8 +584,13 @@ document.getElementById("logoutBtn").onclick = function () {
         </div>
         <p>&copy; 2026 Abdul Rehman. Freelance UX/UI, WordPress, Etsy & eBay & Amazon & Shopify Specialist. All Rights Reserved.</p>
     </footer>
-
-  
+<script>
+document.getElementById("logoutBtn").onclick = function () {
+    firebase.auth().signOut().then(function () {
+        window.location.href = "index.html";
+    });
+};
+</script>
     <script src="script.js"></script>
 </body>
 </html>
