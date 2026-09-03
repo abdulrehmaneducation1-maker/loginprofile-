@@ -1,6 +1,3 @@
-
-
-
 :root {
     --bg-color: #0b0f19;
     --card-bg: #121826;
@@ -899,7 +896,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, #stars span:f
 /* ---------- Submit button: full pill, orange, dark text ---------- */
 
 button {
- margin-top: 8px;[
+  margin-top: 22px;
   width: 100%;
   padding: 15px;
   background: #f2a91d;
