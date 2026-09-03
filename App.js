@@ -1,229 +1,317 @@
-const DAILY_LIMIT = 4;
+```js
+// Firebase Authentication
+// Features:
+// - Email + Password Sign In
+// - Sign Up
+// - Forgot Password
+// - Continue with Google
+// - Successful login -> home.html
 
-const cardSub = document.getElementById("cardSub");
+const auth = firebase.auth();
 
-// Google
 const googleBtn = document.getElementById("googleBtn");
 
-// Email + Password
-const emailPasswordForm = document.getElementById("emailPasswordForm");
+const loginForm = document.getElementById("loginForm");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
-const emailSignInBtn = document.getElementById("emailSignInBtn");
-const toggleSignUpBtn = document.getElementById("toggleSignUpBtn");
+const signInBtn = document.getElementById("signInBtn");
+
+const forgotPasswordBtn = document.getElementById("forgotPassword");
+const signupBtn = document.getElementById("signupBtn");
+
+const showPasswordBtn = document.getElementById("showPassword");
+const statusMsg = document.getElementById("statusMsg");
+
 let isSignUpMode = false;
 
-// Email link (passwordless) toggle
-const useLinkBtn = document.getElementById("useLinkBtn");
-const backToPasswordBtn = document.getElementById("backToPasswordBtn");
-const backToPasswordRow = document.getElementById("backToPasswordRow");
-const emailLinkForm = document.getElementById("emailLinkForm");
-const linkEmailInput = document.getElementById("linkEmail");
 
-// Phone
-const phoneForm = document.getElementById("phoneForm");
-const phoneInput = document.getElementById("phone");
-const sendBtn = document.getElementById("sendBtn");
-const codeForm = document.getElementById("codeForm");
-const codeInput = document.getElementById("code");
-const verifyBtn = document.getElementById("verifyBtn");
+// ---------------- STATUS ----------------
 
-const statusMsg = document.getElementById("statusMsg");
-const limitMsg = document.getElementById("limitMsg");
+function setStatus(message, type = "") {
+  if (!statusMsg) return;
 
-let confirmationResult = null;
+  statusMsg.textContent = message;
+  statusMsg.className = "status";
 
-function setStatus(text, type) {
-  statusMsg.textContent = text;
-  statusMsg.className = "status" + (type ? " " + type : "");
-}
-
-function redirectAfterSignIn() {
-  // 👉 Change this to wherever your logged-in users should land.
-  setTimeout(() => { window.location.href = "index.html"; }, 1200);
-}
-
-/* ---------------- Google ---------------- */
-
-googleBtn.addEventListener("click", async () => {
-  try {
-    setStatus("Opening Google sign-in…", "");
-    const provider = new firebase.auth.GoogleAuthProvider();
-    const result = await auth.signInWithPopup(provider);
-    setStatus(`Signed in as ${result.user.displayName}. Redirecting…`, "success");
-    redirectAfterSignIn();
-  } catch (err) {
-    console.error(err);
-    setStatus(err.message || "Google sign-in failed.", "error");
-  }
-});
-
-/* ---------------- Email + Password ---------------- */
-
-toggleSignUpBtn.addEventListener("click", () => {
-  isSignUpMode = !isSignUpMode;
-  emailSignInBtn.textContent = isSignUpMode ? "Create Account" : "Sign In";
-  toggleSignUpBtn.textContent = isSignUpMode ? "Sign in instead" : "Create an account instead";
-  setStatus("", "");
-});
-
-emailPasswordForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const email = emailInput.value.trim();
-  const password = passwordInput.value;
-  if (!email || !password) return;
-
-  emailSignInBtn.disabled = true;
-  setStatus(isSignUpMode ? "Creating account…" : "Signing in…", "");
-
-  try {
-    const result = isSignUpMode
-      ? await auth.createUserWithEmailAndPassword(email, password)
-      : await auth.signInWithEmailAndPassword(email, password);
-
-    setStatus(`Signed in as ${result.user.email}. Redirecting…`, "success");
-    redirectAfterSignIn();
-  } catch (err) {
-    console.error(err);
-    setStatus(err.message || "Something went wrong. Please try again.", "error");
-    emailSignInBtn.disabled = false;
-  }
-});
-
-/* ---------------- Email link (passwordless) toggle ---------------- */
-
-useLinkBtn.addEventListener("click", () => {
-  emailPasswordForm.classList.add("hidden");
-  toggleSignUpBtn.parentElement.classList.add("hidden");
-  emailLinkForm.classList.remove("hidden");
-  backToPasswordRow.classList.remove("hidden");
-  setStatus("", "");
-});
-
-backToPasswordBtn.addEventListener("click", () => {
-  emailLinkForm.classList.add("hidden");
-  backToPasswordRow.classList.add("hidden");
-  emailPasswordForm.classList.remove("hidden");
-  toggleSignUpBtn.parentElement.classList.remove("hidden");
-  setStatus("", "");
-});
-
-emailLinkForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const email = linkEmailInput.value.trim();
-  if (!email) return;
-
-  const sendLinkBtn = document.getElementById("sendLinkBtn");
-  sendLinkBtn.disabled = true;
-  setStatus("Sending link…", "");
-
-  try {
-    await auth.sendSignInLinkToEmail(email, ACTION_CODE_SETTINGS);
-    window.localStorage.setItem("emailForSignIn", email);
-    setStatus("Check your email — we sent you a sign-in link.", "success");
-  } catch (err) {
-    console.error(err);
-    setStatus(err.message || "Couldn't send the link. Please try again.", "error");
-  } finally {
-    sendLinkBtn.disabled = false;
-  }
-});
-
-/* ---------------- Phone OTP (4/day cap) ---------------- */
-
-function currentDayKey() {
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-}
-
-async function refreshLimitDisplay() {
-  try {
-    const doc = await db.collection("otpUsage").doc(currentDayKey()).get();
-    const count = doc.exists ? doc.data().count : 0;
-    limitMsg.textContent = `${count}/${DAILY_LIMIT} phone codes sent today`;
-  } catch (e) {
-    limitMsg.textContent = "";
+  if (type) {
+    statusMsg.classList.add(type);
   }
 }
-refreshLimitDisplay();
 
-// Atomically checks + increments today's cap so two requests
-// can't both slip through at count 3/4.
-async function tryConsumeDailyQuota() {
-  const ref = db.collection("otpUsage").doc(currentDayKey());
 
-  return db.runTransaction(async (tx) => {
-    const doc = await tx.get(ref);
-    const count = doc.exists ? doc.data().count : 0;
+// ---------------- REDIRECT ----------------
 
-    if (count >= DAILY_LIMIT) {
-      return { allowed: false, count };
+function redirectToHome() {
+  window.location.replace("home.html");
+}
+
+
+// ---------------- SHOW / HIDE PASSWORD ----------------
+
+if (showPasswordBtn) {
+  showPasswordBtn.addEventListener("click", () => {
+
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      showPasswordBtn.textContent = "Hide";
+    } else {
+      passwordInput.type = "password";
+      showPasswordBtn.textContent = "Show";
     }
 
-    tx.set(ref, { count: count + 1 }, { merge: true });
-    return { allowed: true, count: count + 1 };
   });
 }
 
-// Firebase Phone Auth requires this invisible reCAPTCHA to prove
-// the request is coming from a real browser, not a bot/script.
-const recaptchaVerifier = new firebase.auth.RecaptchaVerifier("recaptcha-container", {
-  size: "invisible"
+
+// ---------------- SIGN IN / SIGN UP TOGGLE ----------------
+
+signupBtn.addEventListener("click", () => {
+
+  isSignUpMode = !isSignUpMode;
+
+  if (isSignUpMode) {
+
+    signInBtn.textContent = "Create Account";
+    signupBtn.textContent = "Sign in instead";
+
+    setStatus("");
+
+  } else {
+
+    signInBtn.textContent = "Sign In";
+    signupBtn.textContent = "Sign Up";
+
+    setStatus("");
+  }
+
 });
 
-phoneForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const phone = phoneInput.value.trim();
-  if (!phone) return;
 
-  sendBtn.disabled = true;
-  setStatus("Checking availability…", "");
+// ---------------- EMAIL + PASSWORD ----------------
+
+loginForm.addEventListener("submit", async (event) => {
+
+  event.preventDefault();
+
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+
+  if (!email || !password) {
+    setStatus("Please enter your email and password.", "error");
+    return;
+  }
+
+  signInBtn.disabled = true;
 
   try {
-    const quota = await tryConsumeDailyQuota();
 
-    if (!quota.allowed) {
-      setStatus("Today's phone sign-in limit reached. Please try again tomorrow.", "error");
-      sendBtn.disabled = false;
-      return;
+    let result;
+
+    if (isSignUpMode) {
+
+      setStatus("Creating your account...");
+
+      result = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+
+      setStatus("Account created successfully. Opening Reportfy...", "success");
+
+    } else {
+
+      setStatus("Signing you in...");
+
+      result = await auth.signInWithEmailAndPassword(
+        email,
+        password
+      );
+
+      setStatus("Login successful. Opening Reportfy...", "success");
     }
 
-    setStatus("Sending code…", "");
-    confirmationResult = await auth.signInWithPhoneNumber(phone, recaptchaVerifier);
+    // Successful authentication
+    setTimeout(() => {
+      redirectToHome();
+    }, 500);
 
-    setStatus("Code sent — check your SMS.", "success");
-    refreshLimitDisplay();
+  } catch (error) {
 
-    // Swap to step 2
-    phoneForm.classList.add("hidden");
-    codeForm.classList.remove("hidden");
-    cardSub.textContent = `We texted a 6-digit code to ${phone}`;
-    codeInput.focus();
-  } catch (err) {
-    console.error(err);
-    setStatus(err.message || "Couldn't send code. Check the number and try again.", "error");
-    sendBtn.disabled = false;
-    recaptchaVerifier.render().then((widgetId) => {
-      if (window.grecaptcha) window.grecaptcha.reset(widgetId);
-    });
+    console.error(error);
+
+    let message = "Something went wrong. Please try again.";
+
+    switch (error.code) {
+
+      case "auth/invalid-email":
+        message = "Please enter a valid email address.";
+        break;
+
+      case "auth/user-not-found":
+        message = "No account was found with this email.";
+        break;
+
+      case "auth/wrong-password":
+      case "auth/invalid-credential":
+        message = "Incorrect email or password.";
+        break;
+
+      case "auth/email-already-in-use":
+        message = "An account with this email already exists.";
+        break;
+
+      case "auth/weak-password":
+        message = "Password must be at least 6 characters.";
+        break;
+
+      case "auth/too-many-requests":
+        message = "Too many attempts. Please try again later.";
+        break;
+
+      case "auth/network-request-failed":
+        message = "Network error. Please check your internet connection.";
+        break;
+
+      default:
+        message = error.message || message;
+    }
+
+    setStatus(message, "error");
+
+    signInBtn.disabled = false;
   }
+
 });
 
-codeForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const code = codeInput.value.trim();
-  if (!code || !confirmationResult) return;
 
-  verifyBtn.disabled = true;
-  setStatus("Verifying…", "");
+// ---------------- FORGOT PASSWORD ----------------
+
+forgotPasswordBtn.addEventListener("click", async () => {
+
+  const email = emailInput.value.trim();
+
+  if (!email) {
+
+    setStatus(
+      "Enter your email address first, then click Forgot password.",
+      "error"
+    );
+
+    emailInput.focus();
+
+    return;
+  }
+
+  forgotPasswordBtn.disabled = true;
 
   try {
-    const result = await confirmationResult.confirm(code);
-    setStatus(`Signed in as ${result.user.phoneNumber}. Redirecting…`, "success");
-    redirectAfterSignIn();
-  } catch (err) {
-    console.error(err);
-    setStatus("Incorrect or expired code. Please try again.", "error");
-    verifyBtn.disabled = false;
+
+    await auth.sendPasswordResetEmail(email);
+
+    setStatus(
+      "Password reset email sent. Check your inbox.",
+      "success"
+    );
+
+  } catch (error) {
+
+    console.error(error);
+
+    let message = "Unable to send password reset email.";
+
+    switch (error.code) {
+
+      case "auth/invalid-email":
+        message = "Please enter a valid email address.";
+        break;
+
+      case "auth/user-not-found":
+        message = "No account was found with this email.";
+        break;
+
+      case "auth/too-many-requests":
+        message = "Too many requests. Please try again later.";
+        break;
+
+      default:
+        message = error.message || message;
+    }
+
+    setStatus(message, "error");
+
+  } finally {
+
+    forgotPasswordBtn.disabled = false;
+
   }
+
 });
+
+
+// ---------------- GOOGLE LOGIN ----------------
+
+googleBtn.addEventListener("click", async () => {
+
+  googleBtn.disabled = true;
+
+  try {
+
+    setStatus("Opening Google sign-in...");
+
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    // Optional: always show the Google account chooser
+    provider.setCustomParameters({
+      prompt: "select_account"
+    });
+
+    const result = await auth.signInWithPopup(provider);
+
+    const user = result.user;
+
+    setStatus(
+      `Welcome ${user.displayName || user.email}. Opening Reportfy...`,
+      "success"
+    );
+
+    setTimeout(() => {
+      redirectToHome();
+    }, 500);
+
+  } catch (error) {
+
+    console.error(error);
+
+    let message = "Google sign-in failed.";
+
+    switch (error.code) {
+
+      case "auth/popup-closed-by-user":
+        message = "Google sign-in was cancelled.";
+        break;
+
+      case "auth/popup-blocked":
+        message = "Your browser blocked the Google sign-in popup.";
+        break;
+
+      case "auth/unauthorized-domain":
+        message =
+          "This website is not authorized in Firebase Authentication.";
+        break;
+
+      case "auth/account-exists-with-different-credential":
+        message =
+          "An account already exists with this email using another sign-in method.";
+        break;
+
+      default:
+        message = error.message || message;
+    }
+
+    setStatus(message, "error");
+
+    googleBtn.disabled = false;
+  }
+
+});
+```
