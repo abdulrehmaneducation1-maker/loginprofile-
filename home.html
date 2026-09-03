@@ -5,7 +5,8 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <title>
         Freelance UX/UI Designer, Graphic Designer & WordPress Developer |
@@ -38,17 +39,22 @@
     <meta property="og:description"
         content="Freelance UX/UI, graphic & WordPress website design, eBay/Etsy store setup and training, virtual assistant and account management services.">
 
-    <meta property="og:image" content="me.png">
+    <meta property="og:image"
+        content="https://abdulrehmaneducation1-maker.github.io/loginprofile-/me.png">
 
     <meta property="og:url"
         content="https://abdulrehmaneducation1-maker.github.io/loginprofile-/">
 
+    <meta property="og:site_name"
+        content="Abdul Rehman">
+
 
     <!-- =====================================================
-         TWITTER
+         TWITTER / X
     ====================================================== -->
 
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card"
+        content="summary_large_image">
 
     <meta name="twitter:title"
         content="Freelance UX/UI, Graphic & WordPress Website Designer | Abdul Rehman">
@@ -56,16 +62,20 @@
     <meta name="twitter:description"
         content="UX/UI, graphic & WordPress web design, eBay/Etsy store setup & training, virtual assistant services.">
 
-    <meta name="twitter:image" content="me.png">
+    <meta name="twitter:image"
+        content="https://abdulrehmaneducation1-maker.github.io/loginprofile-/me.png">
 
 
     <!-- =====================================================
-         FAVICON
+         FAVICON / WEBSITE ICON
     ====================================================== -->
 
-<img src="hello.png" alt="Website Icon" class="website-icon">
+    <link rel="icon"
+        type="image/png"
+        href="hello.png">
 
-    <link rel="apple-touch-icon" href="me.png">
+    <link rel="apple-touch-icon"
+        href="hello.png">
 
 
     <!-- =====================================================
@@ -90,9 +100,206 @@
          YOUR CSS
     ====================================================== -->
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="style.css">
 
-    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet"
+        href="responsive.css">
+
+
+    <!-- =====================================================
+         LOGOUT BUTTON STYLE
+    ====================================================== -->
+
+    <style>
+
+        /* =================================================
+           LOGOUT - SAME DESIGN AS NAV
+        ================================================= */
+
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+
+            gap: 7px;
+
+            width: 100%;
+            padding: 10px 14px;
+            margin-top: 1px;
+
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+
+            color: inherit;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+
+            line-height: 1.2;
+            text-align: left;
+
+            cursor: pointer;
+
+            transition:
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.2s ease;
+        }
+
+
+        .logout-btn i {
+            width: 18px;
+            min-width: 18px;
+
+            font-size: 14px;
+            text-align: center;
+
+            transition: 0.25s ease;
+        }
+
+
+        .logout-btn:hover {
+            background: rgba(245, 166, 35, 0.10);
+            color: #f5a623;
+        }
+
+
+        .logout-btn:hover i {
+            color: #f5a623;
+        }
+
+
+        .logout-btn:active {
+            transform: scale(0.97);
+        }
+
+
+        .logout-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+
+        /* ================================================
+           PC / LAPTOP
+        ================================================ */
+
+        @media (min-width: 769px) {
+
+            .logout-btn {
+                padding: 10px 14px;
+                margin-top: 1px;
+                font-size: 14px;
+                gap: 7px;
+            }
+
+            .logout-btn i {
+                font-size: 14px;
+            }
+        }
+
+
+        /* ================================================
+           TABLET
+        ================================================ */
+
+        @media (max-width: 768px) {
+
+            .logout-btn {
+                padding: 9px 13px;
+                margin-top: 1px;
+                font-size: 13px;
+                gap: 6px;
+            }
+
+            .logout-btn i {
+                font-size: 13px;
+                width: 17px;
+                min-width: 17px;
+            }
+        }
+
+
+        /* ================================================
+           MOBILE
+        ================================================ */
+
+        @media (max-width: 600px) {
+
+            .logout-btn {
+                width: 100%;
+
+                padding: 9px 12px;
+                margin-top: 1px;
+
+                font-size: 12px;
+                gap: 6px;
+
+                border-radius: 7px;
+            }
+
+            .logout-btn i {
+                width: 16px;
+                min-width: 16px;
+
+                font-size: 12px;
+            }
+        }
+
+
+        /* ================================================
+           SMALL MOBILE
+        ================================================ */
+
+        @media (max-width: 400px) {
+
+            .logout-btn {
+                padding: 8px 10px;
+                margin-top: 1px;
+
+                font-size: 11px;
+                gap: 5px;
+
+                border-radius: 6px;
+            }
+
+            .logout-btn i {
+                width: 15px;
+                min-width: 15px;
+
+                font-size: 11px;
+            }
+        }
+
+
+        /* ================================================
+           VERY SMALL PHONE
+        ================================================ */
+
+        @media (max-width: 340px) {
+
+            .logout-btn {
+                padding: 7px 9px;
+                margin-top: 1px;
+
+                font-size: 10px;
+                gap: 4px;
+
+                border-radius: 6px;
+            }
+
+            .logout-btn i {
+                width: 14px;
+                min-width: 14px;
+
+                font-size: 10px;
+            }
+        }
+
+    </style>
 
 
     <!-- =====================================================
@@ -111,10 +318,6 @@
 
         /*
          * Only authenticated users can use this page.
-         *
-         * Firebase checks the current login session.
-         * If there is no logged-in user,
-         * the visitor is sent back to index.html.
          */
 
         firebase.auth().onAuthStateChanged(function(user) {
@@ -135,34 +338,41 @@
     ====================================================== -->
 
     <script type="application/ld+json">
+
     {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Abdul Rehman",
-      "jobTitle": "Freelance UX/UI, Graphic & WordPress Website Designer",
-      "url": "https://abdulrehmaneducation1-maker.github.io/loginprofile-/",
-      "sameAs": [
-        "https://www.linkedin.com/in/abdulrehmaneducation1/",
-        "https://github.com/abdulrehmaneducation1-maker",
-        "https://x.com/AbdulRehma54793",
-        "https://www.facebook.com/abdulrehmanuser"
-      ],
-      "knowsAbout": [
-        "UX/UI Design",
-        "Graphic Design",
-        "WordPress Website Design",
-        "eBay Store Setup",
-        "Etsy Store Setup and Training",
-        "E-commerce",
-        "Virtual Assistant Services",
-        "Account Management"
-      ]
+        "@context": "https://schema.org",
+
+        "@type": "Person",
+
+        "name": "Abdul Rehman",
+
+        "jobTitle": "Freelance UX/UI, Graphic & WordPress Website Designer",
+
+        "url": "https://abdulrehmaneducation1-maker.github.io/loginprofile-/",
+
+        "sameAs": [
+            "https://www.linkedin.com/in/abdulrehmaneducation1/",
+            "https://github.com/abdulrehmaneducation1-maker",
+            "https://x.com/AbdulRehma54793",
+            "https://www.facebook.com/abdulrehmanuser"
+        ],
+
+        "knowsAbout": [
+            "UX/UI Design",
+            "Graphic Design",
+            "WordPress Website Design",
+            "eBay Store Setup",
+            "Etsy Store Setup and Training",
+            "E-commerce",
+            "Virtual Assistant Services",
+            "Account Management"
+        ]
     }
- </script>
 
-
+    </script>
 
 </head>
+
 
 <body>
 
@@ -174,80 +384,180 @@
     <header>
 
         <a href="#home" class="logo">
+
             <i class="fa-solid fa-code"></i>
+
             ABDUL REHMAN<span>.</span>
+
         </a>
 
+
+        <!-- MOBILE MENU BUTTON -->
 
         <button
             class="nav-toggle"
             id="navToggle"
             aria-label="Open menu"
-            aria-expanded="false">
+            aria-expanded="false"
+            type="button">
 
             <i class="fa-solid fa-bars"></i>
 
         </button>
 
 
-       <nav id="mainNav">
+        <!-- NAVIGATION -->
+
+        <nav id="mainNav">
+
             <ul>
-               <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li><a href="#about"><i class="fa-solid fa-user"></i> About</a></li>
-                <li><a href="#services"><i class="fa-solid fa-layer-group"></i> Services</a></li>
-                <li><a href="#blog"><i class="fa-solid fa-blog"></i> Blog</a></li>
-                  <li><a href="#feedback"><i class="fa-solid fa-comments"></i> Feedback</a></li>
-                <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
 
-         <li>      
-    <button
-    id="logoutBtn"
-    type="button"
-    class="logout-btn">
+                <li>
 
-    <i class="fa-solid fa-right-from-bracket"></i>
-    Logout
+                    <a href="#home">
 
-</button>
+                        <i class="fa-solid fa-house"></i>
+
+                        Home
+
+                    </a>
+
                 </li>
+
+
+                <li>
+
+                    <a href="#about">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        About
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="#services">
+
+                        <i class="fa-solid fa-layer-group"></i>
+
+                        Services
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="#blog">
+
+                        <i class="fa-solid fa-blog"></i>
+
+                        Blog
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="#feedback">
+
+                        <i class="fa-solid fa-comments"></i>
+
+                        Feedback
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="#contact">
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        Contact
+
+                    </a>
+
+                </li>
+
+
+                <!-- LOGOUT -->
+
+                <li>
+
+                    <button
+                        id="logoutBtn"
+                        type="button"
+                        class="logout-btn">
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        <span>Logout</span>
+
+                    </button>
+
+                </li>
+
             </ul>
+
         </nav>
 
-
-     
-
- 
-
     </header>
-
 
 
     <!-- =====================================================
          HERO
     ====================================================== -->
 
-    <section class="hero" id="home">
+    <section
+        class="hero"
+        id="home">
 
         <h1>
+
             Hi, I am
-            <span>Abdul Rehman</span>
+
+            <span>
+                Abdul Rehman
+            </span>
+
         </h1>
 
 
         <p>
-            Freelance frontend web developer &amp; WordPress website designer.
-            I build clean, pixel-perfect, fully responsive websites,
-            set up eBay and Etsy stores, and offer Etsy/eBay/Amazon/Shopify
-            training, UX/UI design, graphic design, and virtual assistant services.
+
+            Freelance frontend web developer &amp;
+            WordPress website designer.
+
+            I build clean, pixel-perfect,
+            fully responsive websites,
+
+            set up eBay and Etsy stores,
+            and offer Etsy/eBay/Amazon/Shopify
+
+            training, UX/UI design,
+            graphic design, and virtual assistant services.
+
         </p>
 
 
         <div class="social-icons">
 
+
             <a
                 href="https://www.linkedin.com/in/abdulrehmaneducation1/"
                 target="_blank"
-                rel="noopener noreferrer">
+                rel="noopener noreferrer"
+                aria-label="LinkedIn">
 
                 <i class="fa-brands fa-linkedin-in"></i>
 
@@ -257,7 +567,8 @@
             <a
                 href="https://wa.me/923413231540"
                 target="_blank"
-                rel="noopener noreferrer">
+                rel="noopener noreferrer"
+                aria-label="WhatsApp">
 
                 <i class="fa-brands fa-whatsapp"></i>
 
@@ -267,7 +578,8 @@
             <a
                 href="https://x.com/AbdulRehma54793"
                 target="_blank"
-                rel="noopener noreferrer">
+                rel="noopener noreferrer"
+                aria-label="X">
 
                 <span class="x-icon">𝕏</span>
 
@@ -278,7 +590,6 @@
     </section>
 
 
-
     <!-- =====================================================
          ABOUT
     ====================================================== -->
@@ -287,7 +598,9 @@
 
         <div class="section-title">
 
-            <h2>About Me</h2>
+            <h2>
+                About Me
+            </h2>
 
         </div>
 
@@ -313,52 +626,67 @@
 
 
                 <h4>
-                    Web Development & WordPress & E-Commerce & Virtual Assistance
+                    Web Development &amp; WordPress &amp;
+                    E-Commerce &amp; Virtual Assistance
                 </h4>
 
 
                 <p>
+
                     I'm a Visual and WordPress Designer with a strong focus
                     on digital branding, e-commerce, and conversion-friendly design.
+
                     I specialize in WordPress web development, graphic design,
                     and setting up and optimizing Amazon, eBay, Etsy, and Shopify stores.
+
                     I also offer virtual assistant and account management services
-                    to help you run your online business smoothly — from design
-                    to daily store management, I've got you covered.
+                    to help you run your online business smoothly —
+                    from design to daily store management, I've got you covered.
+
                 </p>
 
 
                 <div class="bio-grid">
 
-                    <div class="bio-label">Phone</div>
+                    <div class="bio-label">
+                        Phone
+                    </div>
 
                     <div class="bio-value">
                         : +92 341 3231540
                     </div>
 
 
-                    <div class="bio-label">Email</div>
+                    <div class="bio-label">
+                        Email
+                    </div>
 
                     <div class="bio-value">
                         : abdulrehmaneducation1@gmail.com
                     </div>
 
 
-                    <div class="bio-label">From</div>
+                    <div class="bio-label">
+                        From
+                    </div>
 
                     <div class="bio-value">
                         : Multan, Punjab, Pakistan
                     </div>
 
 
-                    <div class="bio-label">Language</div>
+                    <div class="bio-label">
+                        Language
+                    </div>
 
                     <div class="bio-value">
                         : English, Urdu, Deutsch, Arabic
                     </div>
 
 
-                    <div class="bio-label">Freelance</div>
+                    <div class="bio-label">
+                        Freelance
+                    </div>
 
                     <div class="bio-value">
                         : Available
@@ -391,7 +719,6 @@
     </section>
 
 
-
     <!-- =====================================================
          SERVICES
     ====================================================== -->
@@ -400,7 +727,9 @@
 
         <div class="section-title">
 
-            <h2>Services</h2>
+            <h2>
+                Services
+            </h2>
 
         </div>
 
@@ -417,9 +746,12 @@
                 </h3>
 
                 <p>
-                    eBay and Etsy store setup, product listing optimization,
-                    Etsy SEO, and Shopify e-commerce solutions to help your
-                    online store grow.
+
+                    eBay and Etsy store setup,
+                    product listing optimization,
+                    Etsy SEO, and Shopify e-commerce solutions
+                    to help your online store grow.
+
                 </p>
 
             </div>
@@ -434,9 +766,11 @@
                 </h3>
 
                 <p>
-                    Custom WordPress website design, theme customization,
-                    and fully responsive, mobile-friendly websites built
-                    for speed and SEO.
+
+                    Custom WordPress website design,
+                    theme customization, and fully responsive,
+                    mobile-friendly websites built for speed and SEO.
+
                 </p>
 
             </div>
@@ -451,8 +785,10 @@
                 </h3>
 
                 <p>
-                    Logo design, branding, and marketing graphics that make
-                    your business stand out online and offline.
+
+                    Logo design, branding, and marketing graphics
+                    that make your business stand out online and offline.
+
                 </p>
 
             </div>
@@ -467,8 +803,11 @@
                 </h3>
 
                 <p>
-                    Reliable freelance virtual assistant support for admin
-                    tasks, customer service, and daily business operations.
+
+                    Reliable freelance virtual assistant support
+                    for admin tasks, customer service,
+                    and daily business operations.
+
                 </p>
 
             </div>
@@ -483,8 +822,10 @@
                 </h3>
 
                 <p>
+
                     User-focused UX/UI design that improves usability,
                     boosts conversions, and creates a seamless customer journey.
+
                 </p>
 
             </div>
@@ -499,8 +840,10 @@
                 </h3>
 
                 <p>
-                    End-to-end account management for eBay, Etsy, and WordPress
-                    sites, including ongoing training and support.
+
+                    End-to-end account management for eBay, Etsy,
+                    and WordPress sites, including ongoing training and support.
+
                 </p>
 
             </div>
@@ -508,7 +851,6 @@
         </div>
 
     </section>
-
 
 
     <!-- =====================================================
@@ -519,7 +861,9 @@
 
         <div class="section-title">
 
-            <h2>Latest Blog</h2>
+            <h2>
+                Latest Blog
+            </h2>
 
         </div>
 
@@ -528,6 +872,8 @@
             class="services-grid"
             style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
 
+
+            <!-- BLOG 1 -->
 
             <div class="blog-card">
 
@@ -548,18 +894,25 @@
                     </span>
 
                     <h4>
-                        The Future of Frontend & WordPress Development:
+                        The Future of Frontend &amp; WordPress Development:
                         Trends to Watch
                     </h4>
 
                     <p>
-                        Explore the latest tools, frameworks, and performance
-                        techniques shaping modern, responsive web design in 2026.
+
+                        Explore the latest tools, frameworks,
+                        and performance techniques shaping modern,
+                        responsive web design in 2026.
+
                     </p>
 
-                    <a href="#" class="blog-read-more">
+                    <a href="#"
+                        class="blog-read-more">
+
                         Read More
+
                         <i class="fa-solid fa-arrow-right"></i>
+
                     </a>
 
                 </div>
@@ -567,6 +920,7 @@
             </div>
 
 
+            <!-- BLOG 2 -->
 
             <div class="blog-card">
 
@@ -591,13 +945,20 @@
                     </h4>
 
                     <p>
-                        Learn how effective wireframing, color psychology,
-                        and user feedback drive higher conversions.
+
+                        Learn how effective wireframing,
+                        color psychology, and user feedback
+                        drive higher conversions.
+
                     </p>
 
-                    <a href="#" class="blog-read-more">
+                    <a href="#"
+                        class="blog-read-more">
+
                         Read More
+
                         <i class="fa-solid fa-arrow-right"></i>
+
                     </a>
 
                 </div>
@@ -605,6 +966,7 @@
             </div>
 
 
+            <!-- BLOG 3 -->
 
             <div class="blog-card">
 
@@ -621,21 +983,28 @@
                 <div class="blog-card-body">
 
                     <span class="blog-tag">
-                        eBay & Etsy
+                        eBay &amp; Etsy
                     </span>
 
                     <h4>
-                        Scaling Your eBay & Etsy Store: Tips for Growth
+                        Scaling Your eBay &amp; Etsy Store:
+                        Tips for Growth
                     </h4>
 
                     <p>
+
                         Key strategies for inventory management,
                         listing optimization, and boosting online sales.
+
                     </p>
 
-                    <a href="#" class="blog-read-more">
+                    <a href="#"
+                        class="blog-read-more">
+
                         Read More
+
                         <i class="fa-solid fa-arrow-right"></i>
+
                     </a>
 
                 </div>
@@ -643,6 +1012,7 @@
             </div>
 
 
+            <!-- BLOG 4 -->
 
             <div class="blog-card">
 
@@ -650,7 +1020,7 @@
 
                     <img
                         src="amazon shopify.jpg"
-                        alt="Etsy SEO and listing training"
+                        alt="Amazon and Shopify listing optimization"
                         loading="lazy">
 
                 </div>
@@ -659,7 +1029,7 @@
                 <div class="blog-card-body">
 
                     <span class="blog-tag">
-                        Amazon & Shopify
+                        Amazon &amp; Shopify
                     </span>
 
                     <h4>
@@ -667,14 +1037,20 @@
                     </h4>
 
                     <p>
+
                         A beginner-friendly guide to keyword research,
-                        search terms, tags, and listing optimization for
-                        Amazon and Shopify to drive more traffic and sales.
+                        search terms, tags, and listing optimization
+                        for Amazon and Shopify to drive more traffic and sales.
+
                     </p>
 
-                    <a href="#" class="blog-read-more">
+                    <a href="#"
+                        class="blog-read-more">
+
                         Read More
+
                         <i class="fa-solid fa-arrow-right"></i>
+
                     </a>
 
                 </div>
@@ -682,6 +1058,7 @@
             </div>
 
 
+            <!-- BLOG 5 -->
 
             <div class="blog-card">
 
@@ -706,13 +1083,19 @@
                     </h4>
 
                     <p>
-                        Simple on-page SEO steps to help your WordPress site
-                        rank higher on Google.
+
+                        Simple on-page SEO steps to help
+                        your WordPress site rank higher on Google.
+
                     </p>
 
-                    <a href="#" class="blog-read-more">
+                    <a href="#"
+                        class="blog-read-more">
+
                         Read More
+
                         <i class="fa-solid fa-arrow-right"></i>
+
                     </a>
 
                 </div>
@@ -720,6 +1103,7 @@
             </div>
 
 
+            <!-- BLOG 6 -->
 
             <div class="blog-card">
 
@@ -744,13 +1128,19 @@
                     </h4>
 
                     <p>
-                        Discover which tasks to delegate first and how
-                        freelance VAs boost productivity.
+
+                        Discover which tasks to delegate first
+                        and how freelance VAs boost productivity.
+
                     </p>
 
-                    <a href="#" class="blog-read-more">
+                    <a href="#"
+                        class="blog-read-more">
+
                         Read More
+
                         <i class="fa-solid fa-arrow-right"></i>
+
                     </a>
 
                 </div>
@@ -762,18 +1152,24 @@
     </section>
 
 
-
     <!-- =====================================================
          FEEDBACK
     ====================================================== -->
 
     <section
         id="feedback"
-        style="background-color: var(--bg-color); padding: 80px 0; overflow: hidden; position: relative;">
+        style="
+            background-color: var(--bg-color);
+            padding: 80px 0;
+            overflow: hidden;
+            position: relative;
+        ">
 
         <div class="section-title">
 
-            <h2>Feedback</h2>
+            <h2>
+                Feedback
+            </h2>
 
         </div>
 
@@ -782,7 +1178,9 @@
 
             <div class="reviews-summary">
 
-                <span id="avgNum">–</span>
+                <span id="avgNum">
+                    –
+                </span>
 
                 <span id="avgStars"></span>
 
@@ -802,9 +1200,11 @@
 
             <form id="feedback-form">
 
+
                 <label for="fb-name">
                     Name
                 </label>
+
 
                 <input
                     id="fb-name"
@@ -816,12 +1216,14 @@
                     Country
                 </label>
 
+
                 <select id="fb-country"></select>
 
 
                 <label for="fb-service">
                     Service
                 </label>
+
 
                 <select id="fb-service"></select>
 
@@ -830,12 +1232,17 @@
                     Rating
                 </label>
 
+
                 <div id="stars">
 
                     <span data-value="1">★</span>
+
                     <span data-value="2">★</span>
+
                     <span data-value="3">★</span>
+
                     <span data-value="4">★</span>
+
                     <span data-value="5">★</span>
 
                 </div>
@@ -845,10 +1252,10 @@
                     Message
                 </label>
 
+
                 <textarea
                     id="fb-message"
-                    placeholder="Tell us what you think...">
-                </textarea>
+                    placeholder="Tell us what you think..."></textarea>
 
 
                 <button type="submit">
@@ -863,10 +1270,12 @@
         </div>
 
 
-        <script type="module" src="feedbacb.js"></script>
+        <script
+            type="module"
+            src="feedbacb.js">
+        </script>
 
     </section>
-
 
 
     <!-- =====================================================
@@ -875,8 +1284,8 @@
 
     <div
         class="container"
-        style="padding-bottom: 100px;"
-        id="contact">
+        id="contact"
+        style="padding-bottom: 100px;">
 
 
         <div class="section-title">
@@ -896,7 +1305,11 @@
                 action="https://formsubmit.co/ajax/abdulrehmaneducation1@gmail.com"
                 method="POST"
                 enctype="multipart/form-data"
-                style="display: grid; gap: 20px; background:#121826;">
+                style="
+                    display: grid;
+                    gap: 20px;
+                    background: #121826;
+                ">
 
 
                 <input
@@ -918,14 +1331,24 @@
 
 
                 <div
-                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    style="
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 20px;
+                    ">
 
 
                     <div>
 
                         <label
                             for="name"
-                            style="display:block; font-size:0.9rem; color:var(--text-main); margin-bottom:8px; font-weight:500;">
+                            style="
+                                display: block;
+                                font-size: 0.9rem;
+                                color: var(--text-main);
+                                margin-bottom: 8px;
+                                font-weight: 500;
+                            ">
 
                             Your Name
 
@@ -938,7 +1361,16 @@
                             id="name"
                             placeholder="e.g. Abdul Rehman"
                             required
-                            style="width:100%; padding:14px; background:#171b28; border:1px solid var(--border-color); border-radius:6px; color:var(--text-main); font-size:0.95rem; outline:none;">
+                            style="
+                                width: 100%;
+                                padding: 14px;
+                                background: #171b28;
+                                border: 1px solid var(--border-color);
+                                border-radius: 6px;
+                                color: var(--text-main);
+                                font-size: 0.95rem;
+                                outline: none;
+                            ">
 
                     </div>
 
@@ -947,7 +1379,13 @@
 
                         <label
                             for="email"
-                            style="display:block; font-size:0.9rem; color:var(--text-main); margin-bottom:8px; font-weight:500;">
+                            style="
+                                display: block;
+                                font-size: 0.9rem;
+                                color: var(--text-main);
+                                margin-bottom: 8px;
+                                font-weight: 500;
+                            ">
 
                             Your Email
 
@@ -960,7 +1398,16 @@
                             id="email"
                             placeholder="e.g. name@example.com"
                             required
-                            style="width:100%; padding:14px; background:#171b28; border:1px solid var(--border-color); border-radius:6px; color:var(--text-main); font-size:0.95rem; outline:none;">
+                            style="
+                                width: 100%;
+                                padding: 14px;
+                                background: #171b28;
+                                border: 1px solid var(--border-color);
+                                border-radius: 6px;
+                                color: var(--text-main);
+                                font-size: 0.95rem;
+                                outline: none;
+                            ">
 
                     </div>
 
@@ -971,7 +1418,13 @@
 
                     <label
                         for="subject"
-                        style="display:block; font-size:0.9rem; color:var(--text-main); margin-bottom:8px; font-weight:500;">
+                        style="
+                            display: block;
+                            font-size: 0.9rem;
+                            color: var(--text-main);
+                            margin-bottom: 8px;
+                            font-weight: 500;
+                        ">
 
                         Subject
 
@@ -984,7 +1437,16 @@
                         id="subject"
                         placeholder="Project Inquiry / Collaboration"
                         required
-                        style="width:100%; padding:14px; background:#171b28; border:1px solid var(--border-color); border-radius:6px; color:var(--text-main); font-size:0.95rem; outline:none;">
+                        style="
+                            width: 100%;
+                            padding: 14px;
+                            background: #171b28;
+                            border: 1px solid var(--border-color);
+                            border-radius: 6px;
+                            color: var(--text-main);
+                            font-size: 0.95rem;
+                            outline: none;
+                        ">
 
                 </div>
 
@@ -993,7 +1455,13 @@
 
                     <label
                         for="messageInput"
-                        style="display:block; font-size:0.9rem; color:var(--text-main); margin-bottom:8px; font-weight:500;">
+                        style="
+                            display: block;
+                            font-size: 0.9rem;
+                            color: var(--text-main);
+                            margin-bottom: 8px;
+                            font-weight: 500;
+                        ">
 
                         Message
 
@@ -1004,18 +1472,18 @@
                         name="message"
                         id="messageInput"
                         rows="5"
-                        placeholder="Tell us about your project or experience…"
+                        placeholder="Tell us about your project or experience..."
                         required
                         style="
-                            width:100%;
-                            padding:14px;
-                            background:#171b28;
-                            border:1px solid var(--border-color);
-                            border-radius:6px;
-                            color:var(--text-main);
-                            font-size:0.95rem;
-                            resize:none;
-                            outline:none;
+                            width: 100%;
+                            padding: 14px;
+                            background: #171b28;
+                            border: 1px solid var(--border-color);
+                            border-radius: 6px;
+                            color: var(--text-main);
+                            font-size: 0.95rem;
+                            resize: none;
+                            outline: none;
                         "></textarea>
 
                 </div>
@@ -1026,27 +1494,25 @@
                     id="submitBtn"
                     class="btn"
                     style="
-                        background:#f39c12;
-                        color:#0b0f19;
-                        padding:14px 30px;
-                        border-radius:30px;
-                        font-weight:600;
-                        border:none;
-                        cursor:pointer;
-                        justify-self:start;
+                        background: #f39c12;
+                        color: #0b0f19;
+                        padding: 14px 30px;
+                        border-radius: 30px;
+                        font-weight: 600;
+                        border: none;
+                        cursor: pointer;
+                        justify-self: start;
                     ">
 
                     Send Message
 
                 </button>
 
-
             </form>
 
         </div>
 
     </div>
-
 
 
     <!-- =====================================================
@@ -1056,37 +1522,37 @@
     <div
         id="formPopup"
         style="
-            display:none;
-            position:fixed;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            background:rgba(0,0,0,0.8);
-            z-index:2000;
-            justify-content:center;
-            align-items:center;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
         ">
 
 
         <div
             style="
-                background:var(--card-bg);
-                border:1px solid var(--border-color);
-                padding:35px;
-                border-radius:12px;
-                text-align:center;
-                max-width:400px;
-                width:90%;
+                background: var(--card-bg);
+                border: 1px solid var(--border-color);
+                padding: 35px;
+                border-radius: 12px;
+                text-align: center;
+                max-width: 400px;
+                width: 90%;
             ">
 
 
             <h3
                 id="popupTitle"
                 style="
-                    margin-bottom:12px;
-                    color:var(--text-main);
-                    font-size:1.4rem;
+                    margin-bottom: 12px;
+                    color: var(--text-main);
+                    font-size: 1.4rem;
                 ">
             </h3>
 
@@ -1094,10 +1560,10 @@
             <p
                 id="popupMessage"
                 style="
-                    color:var(--text-muted);
-                    margin-bottom:25px;
-                    font-size:0.95rem;
-                    line-height:1.5;
+                    color: var(--text-muted);
+                    margin-bottom: 25px;
+                    font-size: 0.95rem;
+                    line-height: 1.5;
                 ">
             </p>
 
@@ -1107,13 +1573,13 @@
                 onclick="closePopup()"
                 class="btn"
                 style="
-                    background:#f39c12;
-                    color:#0b0f19;
-                    padding:10px 25px;
-                    border-radius:20px;
-                    font-weight:600;
-                    border:none;
-                    cursor:pointer;
+                    background: #f39c12;
+                    color: #0b0f19;
+                    padding: 10px 25px;
+                    border-radius: 20px;
+                    font-weight: 600;
+                    border: none;
+                    cursor: pointer;
                 ">
 
                 OK
@@ -1125,19 +1591,19 @@
     </div>
 
 
-
     <!-- =====================================================
          SCROLL TO TOP
     ====================================================== -->
 
     <button
         id="scrollTopBtn"
-        title="Go to top">
+        title="Go to top"
+        type="button"
+        aria-label="Go to top">
 
         <i class="fa-solid fa-arrow-up"></i>
 
     </button>
-
 
 
     <!-- =====================================================
@@ -1146,13 +1612,15 @@
 
     <footer class="site-footer">
 
+
         <div class="footer-icons">
 
 
             <a
                 href="https://www.linkedin.com/in/abdulrehmaneducation1/"
                 target="_blank"
-                rel="noopener noreferrer">
+                rel="noopener noreferrer"
+                aria-label="LinkedIn">
 
                 <i class="fa-brands fa-linkedin-in"></i>
 
@@ -1162,7 +1630,8 @@
             <a
                 href="https://www.facebook.com/abdulrehmanuser"
                 target="_blank"
-                rel="noopener noreferrer">
+                rel="noopener noreferrer"
+                aria-label="Facebook">
 
                 <i class="fa-brands fa-facebook-f"></i>
 
@@ -1172,7 +1641,8 @@
             <a
                 href="https://github.com/abdulrehmaneducation1-maker"
                 target="_blank"
-                rel="noopener noreferrer">
+                rel="noopener noreferrer"
+                aria-label="GitHub">
 
                 <i class="fa-brands fa-github"></i>
 
@@ -1182,9 +1652,12 @@
             <a
                 href="https://x.com/AbdulRehma54793"
                 target="_blank"
-                rel="noopener noreferrer">
+                rel="noopener noreferrer"
+                aria-label="X">
 
-                <span class="x-icon">𝕏</span>
+                <span class="x-icon">
+                    𝕏
+                </span>
 
             </a>
 
@@ -1192,23 +1665,29 @@
             <a
                 href="https://wa.me/923413231540"
                 target="_blank"
-                rel="noopener noreferrer">
+                rel="noopener noreferrer"
+                aria-label="WhatsApp">
 
                 <i class="fa-brands fa-whatsapp"></i>
 
             </a>
 
+
         </div>
 
 
         <p>
+
             &copy; 2026 Abdul Rehman.
-            Freelance UX/UI, WordPress, Etsy & eBay & Amazon & Shopify Specialist.
+
+            Freelance UX/UI, WordPress,
+            Etsy &amp; eBay &amp; Amazon &amp; Shopify Specialist.
+
             All Rights Reserved.
+
         </p>
 
     </footer>
-
 
 
     <!-- =====================================================
@@ -1227,15 +1706,15 @@
 
                 logoutBtn.disabled = true;
 
+
                 logoutBtn.innerHTML =
-                    '<i class="fa-solid fa-spinner fa-spin"></i> Logging out...';
+                    '<i class="fa-solid fa-spinner fa-spin"></i> <span>Logging out...</span>';
 
 
                 firebase.auth().signOut()
 
                     .then(function() {
 
-                        // Logout successful
                         window.location.replace("index.html");
 
                     })
@@ -1250,8 +1729,9 @@
 
                         logoutBtn.disabled = false;
 
+
                         logoutBtn.innerHTML =
-                            '<i class="fa-solid fa-right-from-bracket"></i> Logout';
+                            '<i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>';
 
 
                         alert(
@@ -1267,9 +1747,8 @@
     </script>
 
 
-
     <!-- =====================================================
-         YOUR MAIN JAVASCRIPT
+         MAIN JAVASCRIPT
     ====================================================== -->
 
     <script src="script.js"></script>
