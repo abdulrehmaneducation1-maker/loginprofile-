@@ -84,49 +84,11 @@
 
 <!-- Logout JS -->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    const logoutBtn = document.getElementById("logoutBtn");
-
-    if (!logoutBtn) {
-        return;
-    }
-
-    logoutBtn.addEventListener("click", async function () {
-
-        // Prevent double-click
-        logoutBtn.disabled = true;
-
-        // Show loading state
-        logoutBtn.innerHTML =
-            '<i class="fa-solid fa-spinner fa-spin"></i> ' +
-            '<span>Logging out...</span>';
-
-        try {
-
-            // Firebase logout
-            await firebase.auth().signOut();
-
-            // Send user back to login page
-            window.location.replace("index.html");
-
-        } catch (error) {
-
-            console.error("Logout error:", error);
-
-            // Restore button
-            logoutBtn.disabled = false;
-
-            logoutBtn.innerHTML =
-                '<i class="fa-solid fa-right-from-bracket"></i> ' +
-                '<span>Logout</span>';
-
-            alert("Unable to log out. Please try again.");
-        }
-
+document.getElementById("logoutBtn").onclick = function () {
+    firebase.auth().signOut().then(function () {
+        window.location.href = "index.html";
     });
-
-});
+};
 </script>
 
 <!-- Your main JavaScript -->
