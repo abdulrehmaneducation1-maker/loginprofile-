@@ -1,16 +1,7 @@
 /* =========================================================
    RESPONSIVE CSS
    ========================================================= */
-/* Website Icon */
-.website-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-    border: 2px solid #f5a623;
-}
-/* ---------- GLOBAL SAFETY ---------- */
+/---------- GLOBAL SAFETY ---------- */
 
 * {
     box-sizing: border-box;
