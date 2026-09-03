@@ -1325,10 +1325,9 @@ button:hover { background: #e0980f; }
 nav#mainNav ul li a i {
     color: #f39c12;
     margin-right: 8px; /* Optional: adds a little spacing between the icon and text */
+}
 
 
-    
-    
     /* =========================================
        LOGOUT BUTTON - DESKTOP
        ========================================= */
