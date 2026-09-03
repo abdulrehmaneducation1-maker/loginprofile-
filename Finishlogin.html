@@ -1,31 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Signing you in…</title>
-<link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Reportfy - Sign In</title>
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
+
 <body>
 
-  <div class="card">
-    <h1>SIGNING IN…</h1>
-    <p class="sub" id="finishMsg">Please wait, verifying your link.</p>
+    <div class="card">
 
-    <!-- Shown only if the link is opened on a different device/browser
-         than it was requested from (Firebase security requirement) -->
-    <form id="confirmEmailForm" class="hidden">
-      <label for="confirmEmail">Confirm your email to finish signing in</label>
-      <input type="email" id="confirmEmail" placeholder="e.g. name@gmail.com" required>
-      <button type="submit">Confirm & Sign In</button>
-    </form>
-  </div>
+        <h1>REPORTFY</h1>
 
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+        <p class="sub">
+            Sign-in link
+        </p>
 
-  <script src="firebase-config.js"></script>
-  <script src="finish-login.js"></script>
+        <p
+            id="finishMsg"
+            style="
+                color: var(--text-muted, #94a3b8);
+                margin: 20px 0;
+                line-height: 1.6;
+            ">
+
+            This sign-in link is no longer required.
+            Please return to the login page and sign in
+            using your email and password or Google.
+
+        </p>
+
+
+        <a
+            href="index.html"
+            class="btn"
+            style="
+                display: inline-block;
+                text-decoration: none;
+                background: #f5a623;
+                color: #0a0e17;
+                padding: 12px 25px;
+                border-radius: 8px;
+                font-weight: 600;
+            ">
+
+            Back to Sign In
+
+        </a>
+
+    </div>
+
+
 </body>
+
 </html>
