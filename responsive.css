@@ -356,7 +356,7 @@ footer {
     .btn,
     .submit-btn,
     .download-btn {
-        width: 100%;
+        width: 100%; 
         text-align: center;
         justify-content: center;
     }
