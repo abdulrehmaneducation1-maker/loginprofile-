@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signing you in…</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="card">
+    <h1>SIGNING IN…</h1>
+    <p class="sub" id="finishMsg">Please wait, verifying your link.</p>
+
+    <!-- Shown only if the link is opened on a different device/browser
+         than it was requested from (Firebase security requirement) -->
+    <form id="confirmEmailForm" class="hidden">
+      <label for="confirmEmail">Confirm your email to finish signing in</label>
+      <input type="email" id="confirmEmail" placeholder="e.g. name@gmail.com" required>
+      <button type="submit">Confirm & Sign In</button>
+    </form>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+
+  <script src="firebase-config.js"></script>
+  <script src="finish-login.js"></script>
+</body>
+</html>

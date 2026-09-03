@@ -1,0 +1,464 @@
+/* =========================================================
+   RESPONSIVE CSS
+   ========================================================= */
+
+/* ---------- GLOBAL SAFETY ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.hero,
+section,
+header,
+footer {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   SCROLL TO TOP
+   ========================================================= */
+
+#scrollTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    background: #1e293b;
+    color: #f39c12;
+    cursor: pointer;
+    padding: 14px 18px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+#scrollTopBtn:hover {
+    background: #334155;
+}
+
+
+/* =========================================================
+   NAVIGATION TOGGLE
+   ========================================================= */
+
+.nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 1.6rem;
+    line-height: 1;
+    padding: 5px;
+    margin: 0;
+    width: auto;
+}
+
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+   ========================================================= */
+
+@media screen and (max-width: 1024px) {
+
+    header {
+        padding: 14px 24px;
+        flex-wrap: wrap;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px;
+    }
+
+    .about-content {
+        gap: 30px;
+    }
+
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media screen and (max-width: 768px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    /* -------------------------
+       HEADER
+    ------------------------- */
+
+    header {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        min-height: 64px;
+        padding: 12px 20px;
+        flex-wrap: wrap;
+    }
+
+    /* Logo stays LEFT */
+    header .logo {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        order: 1;
+    }
+
+    /* Hamburger stays RIGHT */
+    .nav-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        order: 2;
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        margin: 0;
+        font-size: 1.6rem;
+        background: transparent;
+        color: inherit;
+    }
+
+    /* Hide contact on mobile */
+    header .header-contact {
+        display: none;
+    }
+
+    /* Navigation */
+    nav#mainNav {
+        display: none;
+        width: 100%;
+        flex-basis: 100%;
+        order: 3;
+        margin: 0;
+    }
+
+    nav#mainNav.open {
+        display: block;
+    }
+
+    nav#mainNav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 0;
+        margin: 0;
+        padding: 8px 0;
+    }
+
+    nav#mainNav ul li {
+        width: 100%;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    }
+
+    nav#mainNav ul li:last-child {
+        border-bottom: none;
+    }
+
+    nav#mainNav ul li a {
+        display: block;
+        width: 100%;
+        padding: 12px 6px;
+    }
+
+
+    /* -------------------------
+       HERO
+    ------------------------- */
+
+    .hero {
+        width: 100%;
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        line-height: 1.3;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+
+    /* -------------------------
+       ABOUT
+    ------------------------- */
+
+    .about-content {
+        grid-template-columns: 1fr !important;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-img img {
+        display: block;
+        max-width: 260px;
+        margin: 0 auto;
+    }
+
+    .bio-grid {
+        grid-template-columns: max-content 1fr !important;
+        text-align: left;
+        font-size: 0.9rem;
+    }
+
+
+    /* -------------------------
+       SERVICES
+    ------------------------- */
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px;
+    }
+
+    .service-card {
+        padding: 24px 16px;
+    }
+
+
+    /* -------------------------
+       CONTACT
+    ------------------------- */
+
+    #feedback-form {
+        padding: 45px 16px;
+    }
+
+    #feedback-form .card {
+        padding: 25px;
+    }
+
+    #feedback-form #contactForm > div:first-of-type {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+
+    /* -------------------------
+       FOOTER
+    ------------------------- */
+
+    .site-footer {
+        padding: 30px 16px;
+        text-align: center;
+    }
+
+    .footer-icons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+
+/* =========================================================
+   MOBILE PHONES
+   ========================================================= */
+
+@media screen and (max-width: 480px) {
+
+    /* Header */
+    header {
+        min-height: 70px;
+        padding: 10px 16px;
+    }
+
+    header .logo {
+        font-size: 1.1rem;
+    }
+
+    .nav-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+
+    /* Hero */
+    .hero {
+        padding: 50px 16px;
+    }
+
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+
+    .hero p {
+        font-size: 0.88rem;
+        line-height: 1.5;
+    }
+
+
+    /* Section title */
+    .section-title h2 {
+        font-size: 1.5rem;
+    }
+
+
+    /* Services */
+    .services-grid {
+        grid-template-columns: 1fr !important;
+        gap: 14px;
+    }
+
+
+    /* About */
+    .about-text h3 {
+        font-size: 1.2rem;
+    }
+
+    .bio-grid {
+        font-size: 0.85rem;
+    }
+
+
+    /* Buttons */
+    .btn,
+    .submit-btn,
+    .download-btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+
+
+    /* Contact */
+    #feedback-form {
+        padding: 40px 12px;
+    }
+
+    #feedback-form .card {
+        margin: 0;
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    #feedback-form .section-title h2 {
+        font-size: 1.5rem;
+    }
+
+
+    /* Upload */
+    .drop-zone,
+    #dropZone {
+        padding: 20px 10px;
+    }
+
+    .drop-zone p,
+    #dropText {
+        font-size: 0.85rem;
+    }
+
+
+    /* Popup */
+    .form-popup-box {
+        width: 88%;
+        padding: 24px 18px;
+    }
+
+
+    /* Blog */
+    .blog-card-body h4 {
+        font-size: 1rem;
+    }
+
+
+    /* Footer */
+    footer p {
+        font-size: 0.8rem;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media screen and (max-width: 360px) {
+
+    header {
+        min-height: 56px;
+        padding: 8px 14px;
+    }
+
+    header .logo {
+        font-size: 1rem;
+    }
+
+    .nav-toggle {
+        width: 38px;
+        height: 38px;
+        font-size: 1.4rem;
+    }
+
+    .hero h1 {
+        font-size: 1.4rem;
+    }
+
+    .services-grid {
+        gap: 10px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #stars span,
+    button,
+    #dropZone {
+        transition: none;
+    }
+
+    .review-track {
+        animation: none;
+    }
+
+    #reviewList {
+        overflow-x: auto;
+    }
+}
