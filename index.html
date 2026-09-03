@@ -1,122 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Sign In | Reportfy</title>
+    <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="stylee.css">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In | Reportfy</title>
+
+    <link rel="stylesheet" href="stylee.css">
+
 </head>
+
 
 <body>
 
-  <div class="auth-card">
+    <div class="auth-card">
 
-    <div class="brand">
-      <h1>REPORTFY</h1>
-      <p id="formSubtitle">Sign in to your account</p>
-    </div>
+        <!-- BRAND -->
+        <div class="brand">
 
-    <!-- LOGIN -->
-    <form id="loginForm">
+            <h1>REPORTFY</h1>
 
-      <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        placeholder="name@example.com"
-        autocomplete="email"
-        required
-      >
+            <p id="formSubtitle">
+                Sign in to your account
+            </p>
 
-      <label for="password">Password</label>
+        </div>
 
-      <div class="password-wrapper">
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter your password"
-          autocomplete="current-password"
-          required
+
+        <!-- LOGIN / SIGN UP FORM -->
+        <form id="loginForm">
+
+            <!-- EMAIL -->
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="name@example.com"
+                autocomplete="email"
+                required
+            >
+
+
+            <!-- PASSWORD -->
+            <label for="password">
+                Password
+            </label>
+
+            <div class="password-wrapper">
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    minlength="6"
+                    required
+                >
+
+                <button
+                    type="button"
+                    id="showPassword"
+                    class="show-password"
+                >
+                    Show
+                </button>
+
+            </div>
+
+
+            <!-- FORGOT PASSWORD -->
+            <div class="forgot-row">
+
+                <button
+                    type="button"
+                    id="forgotPassword"
+                    class="text-btn"
+                >
+                    Forgot password?
+                </button>
+
+            </div>
+
+
+            <!-- SIGN IN / CREATE ACCOUNT -->
+            <button
+                type="submit"
+                id="signInBtn"
+                class="primary-btn"
+            >
+                Sign In
+            </button>
+
+        </form>
+
+
+        <!-- DIVIDER -->
+        <div class="divider">
+            <span>OR</span>
+        </div>
+
+
+        <!-- GOOGLE LOGIN -->
+        <button
+            type="button"
+            id="googleBtn"
+            class="google-btn"
         >
 
-        <button type="button" id="showPassword" class="show-password">
-          Show
+            <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+
+                <path
+                    fill="#4285F4"
+                    d="M21.35 12.27c0-.71-.06-1.4-.18-2.05H12v3.88h5.24a4.48 4.48 0 0 1-1.95 2.94v2.45h3.15c1.84-1.69 2.91-4.18 2.91-7.22z"
+                />
+
+                <path
+                    fill="#34A853"
+                    d="M12 21.75c2.63 0 4.84-.87 6.45-2.36l-3.15-2.45c-.87.58-1.98.92-3.3.92-2.54 0-4.69-1.72-5.46-4.03H3.28v2.53A9.75 9.75 0 0 0 12 21.75z"
+                />
+
+                <path
+                    fill="#FBBC05"
+                    d="M6.54 13.83A5.87 5.87 0 0 1 6.23 12c0-.64.11-1.26.31-1.83V7.64H3.28A9.75 9.75 0 0 0 2.25 12c0 1.57.38 3.05 1.03 4.36l3.26-2.53z"
+                />
+
+                <path
+                    fill="#EA4335"
+                    d="M12 6.14c1.43 0 2.72.49 3.73 1.45l2.8-2.8C16.83 3.13 14.63 2.25 12 2.25a9.75 9.75 0 0 0-8.72 5.39l3.26 2.53C7.31 7.86 9.46 6.14 12 6.14z"
+                />
+
+            </svg>
+
+            <span>
+                Continue with Google
+            </span>
+
         </button>
-      </div>
-
-      <div class="forgot-row">
-        <button type="button" id="forgotPassword" class="text-btn">
-          Forgot password?
-        </button>
-      </div>
-
-      <button type="submit" id="signInBtn" class="primary-btn">
-        Sign In
-      </button>
-
-    </form>
 
 
-    <!-- DIVIDER -->
-    <div class="divider">
-      <span>OR</span>
+        <!-- SIGN UP -->
+        <div class="signup-row">
+
+            <span id="signupText">
+                Don't have an account?
+            </span>
+
+            <button
+                type="button"
+                id="signupBtn"
+                class="text-btn signup-btn"
+            >
+                Sign Up
+            </button>
+
+        </div>
+
+
+        <!-- STATUS MESSAGE -->
+        <p
+            id="statusMsg"
+            class="status"
+            aria-live="polite"
+        ></p>
+
     </div>
 
 
-    <!-- GOOGLE -->
-    <button type="button" id="googleBtn" class="google-btn">
+    <!-- FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
 
-      <svg width="20" height="20" viewBox="0 0 24 24">
-        <path
-          fill="#4285F4"
-          d="M21.35 12.27c0-.71-.06-1.4-.18-2.05H12v3.88h5.24a4.48 4.48 0 0 1-1.95 2.94v2.45h3.15c1.84-1.69 2.91-4.18 2.91-7.22z"
-        />
-        <path
-          fill="#34A853"
-          d="M12 21.75c2.63 0 4.84-.87 6.45-2.36l-3.15-2.45c-.87.58-1.98.92-3.3.92-2.54 0-4.69-1.72-5.46-4.03H3.28v2.53A9.75 9.75 0 0 0 12 21.75z"
-        />
-        <path
-          fill="#FBBC05"
-          d="M6.54 13.83A5.87 5.87 0 0 1 6.23 12c0-.64.11-1.26.31-1.83V7.64H3.28A9.75 9.75 0 0 0 2.25 12c0 1.57.38 3.05 1.03 4.36l3.26-2.53z"
-        />
-        <path
-          fill="#EA4335"
-          d="M12 6.14c1.43 0 2.72.49 3.73 1.45l2.8-2.8C16.83 3.13 14.63 2.25 12 2.25a9.75 9.75 0 0 0-8.72 5.39l3.26 2.53C7.31 7.86 9.46 6.14 12 6.14z"
-        />
-      </svg>
-
-      Continue with Google
-
-    </button>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
 
 
-    <!-- SIGN UP -->
-    <div class="signup-row">
-      <span id="signupText">Don't have an account?</span>
-
-      <button
-        type="button"
-        id="signupBtn"
-        class="text-btn signup-btn"
-      >
-        Sign Up
-      </button>
-    </div>
+    <!-- YOUR FIREBASE CONFIG -->
+    <script src="Firebase config.js"></script>
 
 
-    <!-- STATUS -->
-    <p id="statusMsg" class="status"></p>
+    <!-- YOUR AUTHENTICATION SCRIPT -->
+    <script src="App.js"></script>
 
-  </div>
-
-
-<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
-
-<script src="Firebase config.js"></script>
-<script src="App.js"></script>t>
 
 </body>
+
 </html>
