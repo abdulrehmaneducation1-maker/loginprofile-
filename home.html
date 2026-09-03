@@ -587,10 +587,18 @@
 <script src="Firebase config.js"></script>
 
 <script>
-const siteLogoutBtn = document.getElementById("siteLogoutBtn");
+document.addEventListener("DOMContentLoaded", function () {
 
-if (siteLogoutBtn) {
+    const siteLogoutBtn = document.getElementById("siteLogoutBtn");
+
+    if (!siteLogoutBtn) {
+        console.error("Logout button not found");
+        return;
+    }
+
     siteLogoutBtn.addEventListener("click", function () {
+
+        console.log("Logout clicked");
 
         firebase.auth().signOut()
             .then(function () {
@@ -602,8 +610,8 @@ if (siteLogoutBtn) {
             });
 
     });
-}
+
+});
 </script>
-    <script src="script.js"></script>
 </body>
 </html>
