@@ -65,7 +65,7 @@
     <title>Freelance UX/UI Designer, Graphic Designer & WordPress Developer | Abdul Rehman</title>
     
     <!-- Standard Favicon -->
-    <link rel="icon" type="image/png" href="hello.png">
+    <link rel="icon" type="image/png" href="web.jfif">
     
     <!-- Apple Touch Icon (shows up when saved to iOS home screens) -->
     <link rel="apple-touch-icon" href="me.png">
@@ -83,7 +83,7 @@
         <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
             <i class="fa-solid fa-bars"></i>
         </button>
-         <nav id="mainNav">
+        <nav id="mainNav">
             <ul>
                <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
                 <li><a href="#about"><i class="fa-solid fa-user"></i> About</a></li>
@@ -91,15 +91,20 @@
                 <li><a href="#blog"><i class="fa-solid fa-blog"></i> Blog</a></li>
                   <li><a href="#feedback"><i class="fa-solid fa-comments"></i> Feedback</a></li>
                 <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
-        
-   <button id="siteLogoutBtn" type="button" class="logout-btn">
+
+         <li>      
+    <button
+    id="logoutBtn"
+    type="button"
+    class="logout-btn">
+
     <i class="fa-solid fa-right-from-bracket"></i>
-    <span>Logout</span>
+    Logout
+
 </button>
-</ul>
-          
+                </li>
+            </ul>
         </nav>
-         
     </header>
 
     <!-- Hero Section -->
@@ -579,14 +584,8 @@
         </div>
         <p>&copy; 2026 Abdul Rehman. Freelance UX/UI, WordPress, Etsy & eBay & Amazon & Shopify Specialist. All Rights Reserved.</p>
     </footer>
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
-
-<!-- Firebase Config -->
 <script src="Firebase config.js"></script>
 
-<!-- Logout -->
 <script>
 const siteLogoutBtn = document.getElementById("siteLogoutBtn");
 
@@ -604,12 +603,6 @@ if (siteLogoutBtn) {
 
     });
 }
-</script>
-<!-- Main JS -->
-<script src="script.js"></script>
-
-</body>
-</html>
 </script>
     <script src="script.js"></script>
 </body>
