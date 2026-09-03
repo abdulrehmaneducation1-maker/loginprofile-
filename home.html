@@ -75,7 +75,15 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
 
-    <script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+
+<!-- Firebase Config -->
+<script src="Firebase config.js"></script>
+
+<!-- Logout JS -->
+<script>
 document.addEventListener("DOMContentLoaded", function () {
 
     const logoutBtn = document.getElementById("logoutBtn");
@@ -114,13 +122,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 '<span>Logout</span>';
 
             alert("Unable to log out. Please try again.");
-
         }
 
     });
 
 });
 </script>
+
+<!-- Your main JavaScript -->
+<script src="script.js"></script>
+
+
     
 </head>
 <body>
@@ -140,17 +152,17 @@ document.addEventListener("DOMContentLoaded", function () {
                   <li><a href="#feedback"><i class="fa-solid fa-comments"></i> Feedback</a></li>
                 <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
 
-         <li>      
+   <li>
     <button
-    id="logoutBtn"
-    type="button"
-    class="logout-btn">
+        id="logoutBtn"
+        type="button"
+        class="logout-btn">
+        
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span>
 
-    <i class="fa-solid fa-right-from-bracket"></i>
-    Logout
-
-</button>
-                </li>
+    </button>
+</li>
             </ul>
         </nav>
     </header>
