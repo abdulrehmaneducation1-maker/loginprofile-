@@ -1,13 +1,22 @@
-```js
-// Firebase Authentication
+// ======================================================
+// REPORTFY - FIREBASE AUTHENTICATION
+// ======================================================
 // Features:
 // - Email + Password Sign In
 // - Sign Up
 // - Forgot Password
 // - Continue with Google
 // - Successful login -> home.html
+// ======================================================
 
-const auth = firebase.auth();
+
+// Firebase config.js already creates:
+// const auth = firebase.auth();
+//
+// DO NOT write "const auth = firebase.auth();" again here.
+
+
+// ---------------- ELEMENTS ----------------
 
 const googleBtn = document.getElementById("googleBtn");
 
@@ -16,21 +25,34 @@ const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const signInBtn = document.getElementById("signInBtn");
 
-const forgotPasswordBtn = document.getElementById("forgotPassword");
-const signupBtn = document.getElementById("signupBtn");
+const forgotPasswordBtn =
+  document.getElementById("forgotPassword");
 
-const showPasswordBtn = document.getElementById("showPassword");
-const statusMsg = document.getElementById("statusMsg");
+const signupBtn =
+  document.getElementById("signupBtn");
+
+const showPasswordBtn =
+  document.getElementById("showPassword");
+
+const statusMsg =
+  document.getElementById("statusMsg");
+
+
+// ---------------- STATE ----------------
 
 let isSignUpMode = false;
 
 
-// ---------------- STATUS ----------------
+// ======================================================
+// STATUS MESSAGE
+// ======================================================
 
 function setStatus(message, type = "") {
+
   if (!statusMsg) return;
 
   statusMsg.textContent = message;
+
   statusMsg.className = "status";
 
   if (type) {
@@ -39,279 +61,552 @@ function setStatus(message, type = "") {
 }
 
 
-// ---------------- REDIRECT ----------------
+// ======================================================
+// REDIRECT TO HOME
+// ======================================================
 
 function redirectToHome() {
+
   window.location.replace("home.html");
+
 }
 
 
-// ---------------- SHOW / HIDE PASSWORD ----------------
+// ======================================================
+// SHOW / HIDE PASSWORD
+// ======================================================
 
-if (showPasswordBtn) {
-  showPasswordBtn.addEventListener("click", () => {
+if (showPasswordBtn && passwordInput) {
+
+  showPasswordBtn.addEventListener("click", function () {
 
     if (passwordInput.type === "password") {
+
       passwordInput.type = "text";
+
       showPasswordBtn.textContent = "Hide";
+
     } else {
+
       passwordInput.type = "password";
+
       showPasswordBtn.textContent = "Show";
+
     }
 
   });
+
 }
 
 
-// ---------------- SIGN IN / SIGN UP TOGGLE ----------------
+// ======================================================
+// SIGN UP / SIGN IN TOGGLE
+// ======================================================
 
-signupBtn.addEventListener("click", () => {
+if (signupBtn) {
 
-  isSignUpMode = !isSignUpMode;
+  signupBtn.addEventListener("click", function () {
 
-  if (isSignUpMode) {
+    isSignUpMode = !isSignUpMode;
 
-    signInBtn.textContent = "Create Account";
-    signupBtn.textContent = "Sign in instead";
-
-    setStatus("");
-
-  } else {
-
-    signInBtn.textContent = "Sign In";
-    signupBtn.textContent = "Sign Up";
-
-    setStatus("");
-  }
-
-});
-
-
-// ---------------- EMAIL + PASSWORD ----------------
-
-loginForm.addEventListener("submit", async (event) => {
-
-  event.preventDefault();
-
-  const email = emailInput.value.trim();
-  const password = passwordInput.value;
-
-  if (!email || !password) {
-    setStatus("Please enter your email and password.", "error");
-    return;
-  }
-
-  signInBtn.disabled = true;
-
-  try {
-
-    let result;
 
     if (isSignUpMode) {
 
-      setStatus("Creating your account...");
+      signInBtn.textContent = "Create Account";
 
-      result = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
+      signupBtn.textContent = "Sign in instead";
 
-      setStatus("Account created successfully. Opening Reportfy...", "success");
+      setStatus("");
 
     } else {
 
-      setStatus("Signing you in...");
+      signInBtn.textContent = "Sign In";
 
-      result = await auth.signInWithEmailAndPassword(
+      signupBtn.textContent = "Sign Up";
+
+      setStatus("");
+
+    }
+
+  });
+
+}
+
+
+// ======================================================
+// EMAIL + PASSWORD LOGIN / SIGN UP
+// ======================================================
+
+if (loginForm) {
+
+  loginForm.addEventListener("submit", async function (event) {
+
+    event.preventDefault();
+
+
+    const email =
+      emailInput.value.trim();
+
+    const password =
+      passwordInput.value;
+
+
+    // ---------------- VALIDATION ----------------
+
+    if (!email || !password) {
+
+      setStatus(
+        "Please enter your email and password.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    // ---------------- DISABLE BUTTON ----------------
+
+    signInBtn.disabled = true;
+
+
+    try {
+
+      // ==================================================
+      // SIGN UP
+      // ==================================================
+
+      if (isSignUpMode) {
+
+        setStatus(
+          "Creating your account..."
+        );
+
+
+        await auth.createUserWithEmailAndPassword(
+          email,
+          password
+        );
+
+
+        setStatus(
+          "Account created successfully. Opening Reportfy...",
+          "success"
+        );
+
+
+        setTimeout(function () {
+
+          redirectToHome();
+
+        }, 500);
+
+
+        return;
+      }
+
+
+      // ==================================================
+      // SIGN IN
+      // ==================================================
+
+      setStatus(
+        "Signing you in..."
+      );
+
+
+      await auth.signInWithEmailAndPassword(
         email,
         password
       );
 
-      setStatus("Login successful. Opening Reportfy...", "success");
+
+      setStatus(
+        "Login successful. Opening Reportfy...",
+        "success"
+      );
+
+
+      setTimeout(function () {
+
+        redirectToHome();
+
+      }, 500);
+
+
+    } catch (error) {
+
+      console.error(
+        "Firebase Authentication Error:",
+        error
+      );
+
+
+      let message =
+        "Something went wrong. Please try again.";
+
+
+      switch (error.code) {
+
+
+        case "auth/invalid-email":
+
+          message =
+            "Please enter a valid email address.";
+
+          break;
+
+
+        case "auth/user-not-found":
+
+          message =
+            "No account was found with this email.";
+
+          break;
+
+
+        case "auth/wrong-password":
+
+        case "auth/invalid-credential":
+
+          message =
+            "Incorrect email or password.";
+
+          break;
+
+
+        case "auth/email-already-in-use":
+
+          message =
+            "An account with this email already exists.";
+
+          break;
+
+
+        case "auth/weak-password":
+
+          message =
+            "Password must be at least 6 characters.";
+
+          break;
+
+
+        case "auth/too-many-requests":
+
+          message =
+            "Too many attempts. Please try again later.";
+
+          break;
+
+
+        case "auth/network-request-failed":
+
+          message =
+            "Network error. Please check your internet connection.";
+
+          break;
+
+
+        case "auth/operation-not-allowed":
+
+          message =
+            "Email/password authentication is not enabled in Firebase.";
+
+          break;
+
+
+        default:
+
+          message =
+            error.message || message;
+
+      }
+
+
+      setStatus(
+        message,
+        "error"
+      );
+
+
+      signInBtn.disabled = false;
+
     }
 
-    // Successful authentication
-    setTimeout(() => {
-      redirectToHome();
-    }, 500);
+  });
 
-  } catch (error) {
+}
 
-    console.error(error);
 
-    let message = "Something went wrong. Please try again.";
+// ======================================================
+// FORGOT PASSWORD
+// ======================================================
 
-    switch (error.code) {
+if (forgotPasswordBtn) {
 
-      case "auth/invalid-email":
-        message = "Please enter a valid email address.";
-        break;
+  forgotPasswordBtn.addEventListener("click", async function () {
 
-      case "auth/user-not-found":
-        message = "No account was found with this email.";
-        break;
 
-      case "auth/wrong-password":
-      case "auth/invalid-credential":
-        message = "Incorrect email or password.";
-        break;
+    const email =
+      emailInput.value.trim();
 
-      case "auth/email-already-in-use":
-        message = "An account with this email already exists.";
-        break;
 
-      case "auth/weak-password":
-        message = "Password must be at least 6 characters.";
-        break;
+    // ---------------- EMAIL REQUIRED ----------------
 
-      case "auth/too-many-requests":
-        message = "Too many attempts. Please try again later.";
-        break;
+    if (!email) {
 
-      case "auth/network-request-failed":
-        message = "Network error. Please check your internet connection.";
-        break;
+      setStatus(
+        "Enter your email address first, then click Forgot password.",
+        "error"
+      );
 
-      default:
-        message = error.message || message;
+      emailInput.focus();
+
+      return;
+
     }
 
-    setStatus(message, "error");
 
-    signInBtn.disabled = false;
-  }
+    // ---------------- DISABLE BUTTON ----------------
 
-});
+    forgotPasswordBtn.disabled = true;
 
 
-// ---------------- FORGOT PASSWORD ----------------
+    try {
 
-forgotPasswordBtn.addEventListener("click", async () => {
+      setStatus(
+        "Sending password reset email..."
+      );
 
-  const email = emailInput.value.trim();
 
-  if (!email) {
+      await auth.sendPasswordResetEmail(
+        email
+      );
 
-    setStatus(
-      "Enter your email address first, then click Forgot password.",
-      "error"
-    );
 
-    emailInput.focus();
+      setStatus(
+        "Password reset email sent. Check your inbox.",
+        "success"
+      );
 
-    return;
-  }
 
-  forgotPasswordBtn.disabled = true;
+    } catch (error) {
 
-  try {
+      console.error(
+        "Password Reset Error:",
+        error
+      );
 
-    await auth.sendPasswordResetEmail(email);
 
-    setStatus(
-      "Password reset email sent. Check your inbox.",
-      "success"
-    );
+      let message =
+        "Unable to send password reset email.";
 
-  } catch (error) {
 
-    console.error(error);
+      switch (error.code) {
 
-    let message = "Unable to send password reset email.";
 
-    switch (error.code) {
+        case "auth/invalid-email":
 
-      case "auth/invalid-email":
-        message = "Please enter a valid email address.";
-        break;
+          message =
+            "Please enter a valid email address.";
 
-      case "auth/user-not-found":
-        message = "No account was found with this email.";
-        break;
+          break;
 
-      case "auth/too-many-requests":
-        message = "Too many requests. Please try again later.";
-        break;
 
-      default:
-        message = error.message || message;
+        case "auth/user-not-found":
+
+          message =
+            "No account was found with this email.";
+
+          break;
+
+
+        case "auth/too-many-requests":
+
+          message =
+            "Too many requests. Please try again later.";
+
+          break;
+
+
+        case "auth/network-request-failed":
+
+          message =
+            "Network error. Please check your internet connection.";
+
+          break;
+
+
+        default:
+
+          message =
+            error.message || message;
+
+      }
+
+
+      setStatus(
+        message,
+        "error"
+      );
+
+
+    } finally {
+
+      forgotPasswordBtn.disabled = false;
+
     }
 
-    setStatus(message, "error");
+  });
 
-  } finally {
-
-    forgotPasswordBtn.disabled = false;
-
-  }
-
-});
+}
 
 
-// ---------------- GOOGLE LOGIN ----------------
+// ======================================================
+// GOOGLE LOGIN
+// ======================================================
 
-googleBtn.addEventListener("click", async () => {
+if (googleBtn) {
 
-  googleBtn.disabled = true;
+  googleBtn.addEventListener("click", async function () {
 
-  try {
 
-    setStatus("Opening Google sign-in...");
+    googleBtn.disabled = true;
 
-    const provider = new firebase.auth.GoogleAuthProvider();
 
-    // Optional: always show the Google account chooser
-    provider.setCustomParameters({
-      prompt: "select_account"
-    });
+    try {
 
-    const result = await auth.signInWithPopup(provider);
+      setStatus(
+        "Opening Google sign-in..."
+      );
 
-    const user = result.user;
 
-    setStatus(
-      `Welcome ${user.displayName || user.email}. Opening Reportfy...`,
-      "success"
-    );
+      // Create Google provider
 
-    setTimeout(() => {
-      redirectToHome();
-    }, 500);
+      const provider =
+        new firebase.auth.GoogleAuthProvider();
 
-  } catch (error) {
 
-    console.error(error);
+      // Always show Google account selection
 
-    let message = "Google sign-in failed.";
+      provider.setCustomParameters({
 
-    switch (error.code) {
+        prompt: "select_account"
 
-      case "auth/popup-closed-by-user":
-        message = "Google sign-in was cancelled.";
-        break;
+      });
 
-      case "auth/popup-blocked":
-        message = "Your browser blocked the Google sign-in popup.";
-        break;
 
-      case "auth/unauthorized-domain":
-        message =
-          "This website is not authorized in Firebase Authentication.";
-        break;
+      // Open Google login
 
-      case "auth/account-exists-with-different-credential":
-        message =
-          "An account already exists with this email using another sign-in method.";
-        break;
+      const result =
+        await auth.signInWithPopup(
+          provider
+        );
 
-      default:
-        message = error.message || message;
+
+      const user =
+        result.user;
+
+
+      setStatus(
+
+        `Welcome ${
+          user.displayName || user.email
+        }. Opening Reportfy...`,
+
+        "success"
+
+      );
+
+
+      setTimeout(function () {
+
+        redirectToHome();
+
+      }, 500);
+
+
+    } catch (error) {
+
+      console.error(
+        "Google Sign-In Error:",
+        error
+      );
+
+
+      let message =
+        "Google sign-in failed.";
+
+
+      switch (error.code) {
+
+
+        case "auth/popup-closed-by-user":
+
+          message =
+            "Google sign-in was cancelled.";
+
+          break;
+
+
+        case "auth/popup-blocked":
+
+          message =
+            "Your browser blocked the Google sign-in popup.";
+
+          break;
+
+
+        case "auth/unauthorized-domain":
+
+          message =
+            "This website is not authorized in Firebase Authentication.";
+
+          break;
+
+
+        case "auth/account-exists-with-different-credential":
+
+          message =
+            "An account already exists with this email using another sign-in method.";
+
+          break;
+
+
+        case "auth/operation-not-allowed":
+
+          message =
+            "Google sign-in is not enabled in Firebase.";
+
+          break;
+
+
+        case "auth/network-request-failed":
+
+          message =
+            "Network error. Please check your internet connection.";
+
+          break;
+
+
+        default:
+
+          message =
+            error.message || message;
+
+      }
+
+
+      setStatus(
+        message,
+        "error"
+      );
+
+
+      googleBtn.disabled = false;
+
     }
 
-    setStatus(message, "error");
+  });
 
-    googleBtn.disabled = false;
-  }
-
-});
-```
+}
