@@ -92,15 +92,14 @@
                   <li><a href="#feedback"><i class="fa-solid fa-comments"></i> Feedback</a></li>
                 <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
         
-  
-              
+   <button id="siteLogoutBtn" type="button" class="logout-btn">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    <span>Logout</span>
+</button>
 </ul>
           
         </nav>
-          <button id="logoutBtn" type="button" class="logout-btn">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span>Logout</span>
-        </button>
+         
     </header>
 
     <!-- Hero Section -->
@@ -589,10 +588,10 @@
 
 <!-- Logout -->
 <script>
-const logoutBtn = document.getElementById("logoutBtn");
+const siteLogoutBtn = document.getElementById("siteLogoutBtn");
 
-if (logoutBtn) {
-    logoutBtn.addEventListener("click", function () {
+if (siteLogoutBtn) {
+    siteLogoutBtn.addEventListener("click", function () {
 
         firebase.auth().signOut()
             .then(function () {
@@ -606,7 +605,6 @@ if (logoutBtn) {
     });
 }
 </script>
-
 <!-- Main JS -->
 <script src="script.js"></script>
 
